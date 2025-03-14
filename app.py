@@ -3,10 +3,21 @@ import pickle
 import string
 from nltk.corpus import stopwords
 import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
 from nltk.stem.porter import PorterStemmer
 ps = PorterStemmer()
+import os
+
+# Set the download path for NLTK data within the project directory
+NLTK_PATH = os.path.join(os.getcwd(), "nltk_data")
+if not os.path.exists(NLTK_PATH):
+    os.makedirs(NLTK_PATH)
+
+nltk.data.path.append(NLTK_PATH)
+
+# Download punkt and stopwords directly into the project folder
+nltk.download('punkt', download_dir=NLTK_PATH)
+nltk.download('stopwords', download_dir=NLTK_PATH)
+
 
 
 def transform_text(text):
